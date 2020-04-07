@@ -1,0 +1,71 @@
+server:
+  servlet:
+    context-path: /quinn
+  port: 8081
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  thymeleaf:
+    mode: LEGACYHTML5
+  config:
+    location: config
+  dubbo:
+      scan: com.qiaorong.api
+      application:
+        name: qiaorong-api-manager
+        registries[0]:
+          address: zookeeper://127.0.0.1:2181
+  redis:
+    database: 0
+    password: 123456
+    host: 39.105.158.174
+    port: 6379
+    lettuce:
+      pool:
+        max-active:  100 # 连接池最大连接数（使用负值表示没有限制）
+        max-idle: 100 # 连接池中的最大空闲连接
+        min-idle: 50 # 连接池中的最小空闲连接
+        max-wait: 6000 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+  data:
+    mongodb:
+      primary:
+        host: 127.0.0.1
+        port: 27017
+        database: iot
+        username: iot
+        password: 123
+      secondary:
+        host: 127.0.0.1
+        port: 27017
+        database: iot
+        username: iot
+        password: 123
+
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+
+#  profiles:
+#    active: config/${env}
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/view/
+#      suffix: .jsp
+
+
+#logging:
+#  level:
+#    org:
+#      springframework: WARN
+#      springboot:
+#        dao: DEBUG
+#    com:
+#      myjsp: debug
+#  file: D:/logs/spring-boot-logging.log
