@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <title>人脸识别demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<style>
+    img {
+            width:200px;
+            height: 200px;
+            margin-top: 1rem;
+        }
+        #result{
+            margin-top: 1rem;
+        }
+    </style>
+<input id="file" type="file" value="上传" accept="image/*" /><br />
+<img id="image" width="300" />
+<div id="result">
+    <ul>
+        <li>颜值：<span id="yz"></span></li>
+        <li>其他：<span id="qt"></span></li>
+    </ul>
+</div>
+<script>
+    let file = document.getElementById('file');
+    file.onchange = function (e) {
+        let currFile = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(currFile);
+        reader.onload = function (e2) {
+            document.getElementById('image').setAttribute('src', e2.target.result);
+            upload(currFile, (res) => {
+                console.log(res)
+                // document.getElementById('yz').innerHTML = '60分';
+                // document.getElementById('qt').innerHTML = '呵呵呵';
+            })
+
+        }
+    }
+
+    function upload() {
+        var self = this;
+        var url = 'http://a2397772.imwork.net:13032/quinn/user/face';
+        // var url = 'http://116.85.47.128:8081/quinn/user/face';
+        var formData = new FormData();
+        formData.append("file", file, 'file.png')
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                cb && cb(res)
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+</script>
+
+</html>

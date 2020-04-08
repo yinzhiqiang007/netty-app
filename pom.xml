@@ -11,6 +11,7 @@
     <modules>
         <module>netty-common</module>
         <module>netty-helloworld</module>
+        <module>netty-http</module>
     </modules>
 
     <parent>

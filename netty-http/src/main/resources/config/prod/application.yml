@@ -1,0 +1,46 @@
+server:
+  context-path: /quinn
+  port: 8081
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  thymeleaf:
+    mode: LEGACYHTML5
+  config:
+    location: config
+  dubbo:
+      scan: com.qiaorong.api
+      application:
+        name: qiaorong-api-manager
+        registries[0]:
+          address: zookeeper://127.0.0.1:2181
+
+
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+
+#  profiles:
+#    active: config/${env}
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/view/
+#      suffix: .jsp
+
+
+#logging:
+#  level:
+#    org:
+#      springframework: WARN
+#      springboot:
+#        dao: DEBUG
+#    com:
+#      myjsp: debug
+#  file: D:/logs/spring-boot-logging.log
