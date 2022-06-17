@@ -26,7 +26,7 @@
         <dao.version>1.0-SNAPSHOT</dao.version>
         <service.version>1.0-SNAPSHOT</service.version>
         <web.version>1.0-SNAPSHOT</web.version>
-        <fastjson.version>1.2.54</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
 
     <dependencyManagement>
